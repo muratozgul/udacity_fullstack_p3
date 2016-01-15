@@ -8,12 +8,7 @@
     <h1>CATALOG APP</h1>
   </div>
   <div>
-    <h3>Categories</h3>
-    <ul>
-      {% for c in categories %}
-      <li>Category-{{c.id}}: {{ c.name }}</li>
-      {% endfor %}
-    </ul>
+    <h3>Category-{{category.id}}: {{category.name}}</h3>
   </div>
   <div>
     <h3>Items</h3>
