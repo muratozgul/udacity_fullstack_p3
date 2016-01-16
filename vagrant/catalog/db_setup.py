@@ -14,6 +14,13 @@ class Category(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(250), nullable=False)
 
+    @property
+    def serialize(self):
+        return {
+            'id': self.id,
+            'name': self.name
+        }
+
 
 class Item(Base):
     __tablename__ = 'items'
@@ -24,18 +31,24 @@ class Item(Base):
     category_id = Column(Integer, ForeignKey('categories.id'))
     category = relationship(Category)
 
-# We added this serialize function to be able to send JSON objects in a
-# serializable format
     @property
     def serialize(self):
-
         return {
-            'name': self.name,
-            'description': self.description,
             'id': self.id,
-            'category': self.category
+            'name': self.name,
+            'description': self.description
         }
 
 
+class User(Base):
+    __tablename__ = 'users'
+
+    id=Column(Integer, primary_key=True)
+    name=Column(String(250), nullable=False)
+    email = Column(String(250), nullable=False)
+    picture = Column(String(250))
+
+
 engine = create_engine('sqlite:///catalogDB.db')
+print "!!! Initializing Database !!!"
 Base.metadata.create_all(engine)

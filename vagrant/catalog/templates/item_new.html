@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Catalog App</title>
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+</head>
+<body>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="{{url_for('landing')}}">CATALOG APP</a>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="{{url_for('logout')}}">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="col-md-12">
+      <h1>New Item</h1>
+
+      <form action="{{ url_for('newItem', category_id=category_id )}}" method="post">
+        <dl>
+          <dt>Name:</dt>
+          <dd><input type="text" size="30" name="name" required></dd>
+
+          <dt>Description:</dt>
+          <dd><textarea name="description" rows="5" cols="40" required></textarea></dd>
+        </dl>
+
+        <input type="submit" value="Create">
+      </form>
+    </div>
+  </div>
+</body>
+</html>

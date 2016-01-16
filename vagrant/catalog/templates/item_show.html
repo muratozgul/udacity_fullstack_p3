@@ -22,22 +22,17 @@
   <main class="container">
     <div class="row">
       <div class="col-md-12">
-        <h3>Categories</h3>
-        <ul>
-          {% for c in categories %}
-          <li>Category-{{c.id}}: <a href="{{url_for('category', category_id=c.id)}}">{{ c.name }}</a></li>
-          {% endfor %}
-        </ul>
+        {% if isLoggedIn %}
+          <span><a href="{{url_for('editItem', item_id=item.id)}}">Edit</a></span>
+          <span><a href="{{url_for('deleteItem', item_id=item.id)}}">Delete</a></span>  
+        {% endif %}
       </div>
-    </div>
-    <div class="row">
       <div class="col-md-12">
-        <h3>Recent Items</h3>
-        <ul>
-          {% for i in items %}
-          <li>Item-{{i.id}}: <a href="{{url_for('item', item_id=i.id)}}">{{ i.name }}</a> ({{i.category.name}})</li>
-          {% endfor %}
-        </ul>
+        <h3>
+          Item-{{item.id}}: {{item.name}} 
+          (<a href="{{url_for('category', category_id=item.category.id)}}">{{item.category.name}}</a>)
+        </h3>
+        <p>{{item.description}}</p>
       </div>
     </div>
   </main>
